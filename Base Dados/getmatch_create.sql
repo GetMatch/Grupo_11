@@ -20,7 +20,7 @@ jogo_id serial not null,
 create table estado_participante_jogo(
 estado_participante_jogo_id serial not null,
 	estado_jogo_nome varchar(30),
-	primary key(estado_jogo_id)
+	primary key(estado_participante_jogo_id)
 );
 
 create table participante(
@@ -33,9 +33,9 @@ participante_id serial not null,
 );
 
 create table participante_jogo(
-	pajo_id serial not null,
-	pajo_usr_id int not null,
-	pajo_jogo_id int not null,
+	participante_jogo_id serial not null,
+	usr_id int not null,
+	jogo_id int not null,
 	primary key(participante_jogo_id)
 );
 
@@ -73,12 +73,12 @@ campo_id int not null,
 
 alter table participante
 add constraint participante_fk_users
-foreign key(pajo_usr_id) references users(usr_id)
+foreign key(usr_id) references users(usr_id)
 on delete no action on update no action;
 
 alter table participante
 add constraint participante_fk_jogo
-foreign key(pajo_jogo_id) references jogo(jogo_id)
+foreign key(jogo_id) references jogo(jogo_id)
 on delete no action on update no action;
 
 alter table jogo
